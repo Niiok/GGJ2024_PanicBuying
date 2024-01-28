@@ -752,11 +752,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 56307be0-cc9b-4fab-a7db-5a861594511a
+  cloudProjectId: de8d9198-5960-4a6c-a760-d7410bd0502d
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: GGJ2024_PanicBuying
-  organizationId: niiok
+  projectName: PanicBuying
+  organizationId: madcow0214
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
