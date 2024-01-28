@@ -11,7 +11,7 @@ namespace Unity.PanicBuying.Character
         public int itemCounts;
         void Start()
         {
-            itemSpawner.SpawnItems(new Dictionary<GameObject, int>(){ { item, itemCounts } });
+
         }
     }
 }

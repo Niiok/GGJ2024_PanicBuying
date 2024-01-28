@@ -80,12 +80,16 @@ namespace Unity.PanicBuying.Character
 
         private bool isGrounded;
 
+        public AudioSource audioSource;
+        public AudioClip walkingSound;
+
         void Start()
         {
             rigidbody = GetComponent<Rigidbody>();
             rigidbody.mass = defaultMass;
             Transform spawnPoint = GameObject.Find("PlayerSpawnPoint").transform;
             transform.position = spawnPoint.position;
+            audioSource = GetComponent<AudioSource>();
 
             if (IsOwner)
             {
@@ -277,6 +281,8 @@ namespace Unity.PanicBuying.Character
                 {
                     if(isGrounded)
                     {
+                        if (!audioSource.isPlaying)
+                            audioSource.PlayOneShot(walkingSound, 1.0f);
                         animationState = AnimationState.SneakWalk;
                     }
                    
@@ -289,6 +295,8 @@ namespace Unity.PanicBuying.Character
                     {
                         if (isGrounded)
                         {
+                            if (!audioSource.isPlaying)
+                                audioSource.PlayOneShot(walkingSound, 1.0f);
                             animationState = AnimationState.Run;
                         }
                         moveSpeed = runSpeed;
@@ -298,6 +306,8 @@ namespace Unity.PanicBuying.Character
                     {
                         if (isGrounded)
                         {
+                            if (!audioSource.isPlaying)
+                                audioSource.PlayOneShot(walkingSound, 1.0f);
                             animationState = AnimationState.Walk;
                         }
                         moveSpeed = walkSpeed;

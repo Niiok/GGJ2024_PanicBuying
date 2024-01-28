@@ -1,9 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using Unity.Netcode;
+using Unity.Netcode.Components;
+using Unity.PanicBuying.Character;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Experimental.GlobalIllumination;
 
 namespace PanicBuying
 {
@@ -23,6 +29,7 @@ namespace PanicBuying
         public List<PatrolRoute> routes;
         protected NavMeshAgent agent;
         public BoxCaster caster;
+        public NetworkAnimator networkAnimator;
 
         protected EnemyState state = EnemyState.Standby;
 
@@ -32,6 +39,7 @@ namespace PanicBuying
         private void Start()
         {
             agent = GetComponent<NavMeshAgent>();
+            networkAnimator = GetComponentInChildren<NetworkAnimator>();
 
             GameObject[] routeObjects = GameObject.FindGameObjectsWithTag("EnemyPatrolRoute");
             foreach (GameObject go in routeObjects)
@@ -44,6 +52,23 @@ namespace PanicBuying
 
         private void Update()
         {
+            switch (state)
+            {
+                case EnemyState.Patrolling:
+                    networkAnimator.Animator.SetBool("Walk", true);
+                    networkAnimator.Animator.SetBool("Run", false);
+                    break;
+                case EnemyState.Chasing:
+                    networkAnimator.Animator.SetBool("Run", true);
+                    networkAnimator.Animator.SetBool("Walk", true);
+                    break;
+                case EnemyState.Standby:
+                    networkAnimator.Animator.SetBool("Run", false);
+                    networkAnimator.Animator.SetBool("Walk", false);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
             if (state == EnemyState.Standby) return;
             if ((agent.destination - transform.position).magnitude <= agent.stoppingDistance)
             {
@@ -57,7 +82,7 @@ namespace PanicBuying
         public virtual void setTarget(Vector3 targetPos)
         {
             caster.transform.LookAt(targetPos);
-            caster.BoxCast();            
+            caster.BoxCast();
             if (caster.isHit)
             {
                 {
@@ -75,9 +100,9 @@ namespace PanicBuying
             float shortestDistance = float.MaxValue;
 
             // Find closest route
-            for (int i=0; i<routes.Count; i++)
+            for (int i = 0; i < routes.Count; i++)
             {
-                for (int j=0; j < routes[i].patrolPoints.Length; j++)
+                for (int j = 0; j < routes[i].patrolPoints.Length; j++)
                 {
                     if (shortestDistance > (routes[i].patrolPoints[j].position - transform.position).magnitude)
                     {
@@ -109,6 +134,28 @@ namespace PanicBuying
             agent.speed = patrolSpeed;
 
             agent.SetDestination(routes[routeIdx].patrolPoints[patrolPointIdx].position);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.collider.CompareTag("PlayerCharacter"))
+            {
+                PlayerControl control = collision.gameObject.GetComponent<PlayerControl>();
+                collision.collider.GetComponentInChildren<Light>().intensity = 0;
+                control.walkSpeed = 0;
+                control.sneakSpeed = 0;
+                control.runSpeed = 0;
+                control.jumpForce = 0;
+                collision.gameObject.SetActive(false);
+
+                //Invoke("disapear", 5f);
+            }
+        }
+
+        private void disapear()
+        {
+            
+            NetworkManager.Singleton.Shutdown();
         }
     }
 }

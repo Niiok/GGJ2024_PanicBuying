@@ -22,7 +22,7 @@ namespace Unity.PanicBuying.Character
 
             Vector3 spawnPosition = new Vector3(xPosition, yPosition, zPosition);
 
-            Instantiate(item, spawnPosition, Quaternion.identity);
+            Instantiate(item, spawnPosition, Quaternion.Euler(new Vector3(0f, Random.Range(0f, 359f), 0f)));
         }
     }
 }
