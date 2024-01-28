@@ -269,7 +269,7 @@ namespace Unity.PanicBuying.Character
             networkAnimator.Animator.SetInteger("DirectionX", (int)horizontalInput);
             networkAnimator.Animator.SetInteger("DirectionZ", (int)verticalInput);
             var direction = Vector3.Normalize(body.forward * verticalInput + body.right * horizontalInput);
-            Debug.Log(direction);
+
             if (direction.magnitude > 0.0f)
             {
                 float moveSpeed;
