@@ -7,21 +7,21 @@ namespace Unity.PanicBuying.Character
     public class ItemSpawner : MonoBehaviour
     {
         private ItemPositioner[] itemSpawners;
+        public GameObject item;
+        public int count;
 
         void Start()
         {
             itemSpawners = GetComponentsInChildren<ItemPositioner>();
+            Invoke("SpawnItems", 3.0f);
         }
 
-        public void SpawnItems(Dictionary<GameObject, int> itemSpawnDict)
+        public void SpawnItems()
         {
-            foreach (KeyValuePair<GameObject, int> item in itemSpawnDict)
+            for (int i = 0; i < count; i++)
             {
-                for (int i = 0; i < item.Value; i++)
-                {
-                    int spawnerIdx = Random.Range(0, itemSpawners.Length);
-                    itemSpawners[spawnerIdx].spawnItem(item.Key);
-                }
+                int spawnerIdx = Random.Range(0, itemSpawners.Length);
+                itemSpawners[spawnerIdx].spawnItem(item);
             }
         }
     }
