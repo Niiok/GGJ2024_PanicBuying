@@ -5,16 +5,6 @@ using Unity.Netcode;
 
 namespace PanicBuying
 {
-    public class ItemObject_Holding : MonoBehaviour
-    {
-        virtual public bool Use()
-        {
-            return true;
-        }
-
-        NetworkInventory parentInventory;
-    }
-
     [RequireComponent(typeof(NetworkObject))]
     public class ItemObject_Dropped : NetworkBehaviour
     {
