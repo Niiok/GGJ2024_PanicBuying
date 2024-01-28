@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec333ea0c10ee1409e6099daadf0cb8, type: 3}
+  m_Name: ItemSO_Chicken
+  m_EditorClassIdentifier: 
+  id: 4
+  image2D: {fileID: 0}
+  holdingPrefab: {fileID: -4894381462434819965, guid: 273838c700d30934da0c88c02b185202, type: 3}
+  droppedPrefab: {fileID: 449998007426089180, guid: b8fb320092313874eaf28cea445828d4, type: 3}
+  maxCount: 1
+  maxDuration: 0
+  weight: 1
+  canCarry: 1
