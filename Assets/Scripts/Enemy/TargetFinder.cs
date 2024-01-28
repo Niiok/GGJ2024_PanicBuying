@@ -141,12 +141,12 @@ namespace PanicBuying
             if (collision.collider.CompareTag("PlayerCharacter"))
             {
                 PlayerControl control = collision.gameObject.GetComponent<PlayerControl>();
-                collision.collider.GetComponentInChildren<Light>().intensity = 0;
-                control.walkSpeed = 0;
-                control.sneakSpeed = 0;
-                control.runSpeed = 0;
-                control.jumpForce = 0;
-                collision.gameObject.SetActive(false);
+                //collision.collider.GetComponentInChildren<Light>().intensity = 0;
+                //control.walkSpeed = 0;
+                //control.sneakSpeed = 0;
+                //control.runSpeed = 0;
+                //control.jumpForce = 0;
+                //collision.gameObject.SetActive(false);
 
                 //Invoke("disapear", 5f);
             }
