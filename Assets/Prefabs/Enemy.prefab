@@ -225,11 +225,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5d34fed1eaea047875256d2e9eda2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolSpeed: 3.5
-  chasingSpeed: 5
+  patrolSpeed: 2
+  chasingSpeed: 3
   patrolStartTime: 3
   routes: []
   caster: {fileID: 7939952849900640993}
+  networkAnimator: {fileID: 0}
   routeIdx: 0
   patrolPointIdx: 0
 --- !u!114 &450916763852486093
@@ -244,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 824829842
+  GlobalObjectIdHash: 3196018535
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
