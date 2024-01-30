@@ -52,7 +52,7 @@ MonoBehaviour:
     PlayerPrefab: {fileID: 8085191860752111266, guid: 420635050345f4d4b9ccbc3afa83ba27, type: 3}
     Prefabs:
       NetworkPrefabsLists:
-      - {fileID: 11400000, guid: a0256e362f0ebd143b505877bd88fc75, type: 2}
+      - {fileID: 11400000, guid: 803bf6228cb433f4290fb48be2f80645, type: 2}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
@@ -84,8 +84,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ProtocolType: 1
-  m_UseWebSockets: 0
-  m_UseEncryption: 0
   m_MaxPacketQueueSize: 128
   m_MaxPayloadSize: 6144
   m_HeartbeatTimeoutMS: 500
