@@ -12,7 +12,7 @@ namespace PanicBuying
         [SerializeField]
         private NetworkState networkState;
 
-        private void Awake()
+        private void Start()
         {
             try
             {
